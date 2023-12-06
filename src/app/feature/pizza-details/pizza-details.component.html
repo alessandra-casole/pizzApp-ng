@@ -1,0 +1,61 @@
+<div class="container px-0 d-flex mt-5 mb-5">
+  <div class="row row-cols-2 row-cols-lg-4 g-2 mt-3">
+    <div class="col" *ngFor="let pizza of pizzaService.pizzas">
+      <a
+        class="btn"
+        [routerLink]="['/home/pizza/', pizza.id]"
+        data-bs-toggle="modal"
+        [attr.data-bs-target]="'#pizzaDetail-' + pizza.id"
+      >
+        <div class="card shadow-sm mt-3 h-100">
+          <img
+            src="{{ pizza.image }}"
+            class="card-img-top"
+            [alt]="pizza.name"
+          />
+          <div class="card-body pb-4">
+            <h5 class="card-title text-center">{{ pizza.name }}</h5>
+            <p class="card-text">{{ pizza.description }}</p>
+          </div>
+        </div>
+      </a>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        [id]="'pizzaDetail-' + pizza.id"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="pizzaDetailLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body m-auto pb-5">
+              <div class="card shadow-sm mt-3 h-100">
+                <img
+                  src="{{ pizza.image }}"
+                  class="card-img-top"
+                  [alt]="pizza.name"
+                />
+                <div class="card-body pb-4 px-4">
+                  <h5 class="card-title text-center">{{ pizza.name }}</h5>
+                  <p class="card-text py-2">{{ pizza.description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
